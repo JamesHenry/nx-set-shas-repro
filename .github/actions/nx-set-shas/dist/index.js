@@ -779,8 +779,8 @@
               .getJson(id_token_url)
               .catch((error) => {
                 throw new Error(`Failed to get ID Token. \n 
-            Error Code : ${error.statusCode}\n 
-            Error Message: ${error.result.message}`);
+          Error Code : ${error.statusCode}\n 
+          Error Message: ${error.result.message}`);
               });
             const id_token =
               (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
@@ -3700,10 +3700,10 @@
                 }
 
                 /* As of node@2efe4ab761666 (v0.10.29+/v0.11.14+), busboy had become
-             broken. Streams2/streams3 is a huge black box of confusion, but
-             somehow overriding the sync state seems to fix things again (and still
-             seems to work for previous node versions).
-          */
+           broken. Streams2/streams3 is a huge black box of confusion, but
+           somehow overriding the sync state seems to fix things again (and still
+           seems to work for previous node versions).
+        */
                 part._readableState.sync = false;
 
                 part.on("data", onData);
@@ -5048,7 +5048,7 @@
       function _buildMessageForResponseErrors(data) {
         return (
           `Request failed due to following response errors:
-    ` + data.errors.map((e) => ` - ${e.message}`).join("\n")
+  ` + data.errors.map((e) => ` - ${e.message}`).join("\n")
         );
       }
       var GraphqlResponseError = class extends Error {
@@ -15292,10 +15292,10 @@
        */
       function parseURL(urlStr) {
         /*
-         Check whether the URL is absolute or not
-             Scheme: https://tools.ietf.org/html/rfc3986#section-3.1
-         Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
-     */
+     Check whether the URL is absolute or not
+       Scheme: https://tools.ietf.org/html/rfc3986#section-3.1
+     Absolute URL: https://tools.ietf.org/html/rfc3986#section-4.3
+   */
         if (/^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(urlStr)) {
           urlStr = new URL(urlStr).toString();
         }
@@ -23505,14 +23505,14 @@
       }
 
       /**
-     CHAR           = <any US-ASCII character (octets 0 - 127)>
-     token          = 1*<any CHAR except CTLs or separators>
-     separators     = "(" | ")" | "<" | ">" | "@"
-                    | "," | ";" | ":" | "\" | <">
-                    | "/" | "[" | "]" | "?" | "="
-                    | "{" | "}" | SP | HT
-     * @param {string} name
-     */
+   CHAR           = <any US-ASCII character (octets 0 - 127)>
+   token          = 1*<any CHAR except CTLs or separators>
+   separators     = "(" | ")" | "<" | ">" | "@"
+                  | "," | ";" | ":" | "\" | <">
+                  | "/" | "[" | "]" | "?" | "="
+                  | "{" | "}" | SP | HT
+   * @param {string} name
+   */
       function validateCookieName(name) {
         for (const char of name) {
           const code = char.charCodeAt(0);
@@ -23544,13 +23544,13 @@
       }
 
       /**
-     cookie-value      = *cookie-octet / ( DQUOTE *cookie-octet DQUOTE )
-     cookie-octet      = %x21 / %x23-2B / %x2D-3A / %x3C-5B / %x5D-7E
-                           ; US-ASCII characters excluding CTLs,
-                           ; whitespace DQUOTE, comma, semicolon,
-                           ; and backslash
-     * @param {string} value
-     */
+   cookie-value      = *cookie-octet / ( DQUOTE *cookie-octet DQUOTE )
+   cookie-octet      = %x21 / %x23-2B / %x2D-3A / %x3C-5B / %x5D-7E
+                         ; US-ASCII characters excluding CTLs,
+                         ; whitespace DQUOTE, comma, semicolon,
+                         ; and backslash
+   * @param {string} value
+   */
       function validateCookieValue(value) {
         for (const char of value) {
           const code = char.charCodeAt(0);
@@ -23598,46 +23598,46 @@
       }
 
       /**
-     * @see https://www.rfc-editor.org/rfc/rfc7231#section-7.1.1.1
-     * @param {number|Date} date
-      IMF-fixdate  = day-name "," SP date1 SP time-of-day SP GMT
-      ; fixed length/zone/capitalization subset of the format
-      ; see Section 3.3 of [RFC5322]
-    
-      day-name     = %x4D.6F.6E ; "Mon", case-sensitive
-                  / %x54.75.65 ; "Tue", case-sensitive
-                  / %x57.65.64 ; "Wed", case-sensitive
-                  / %x54.68.75 ; "Thu", case-sensitive
-                  / %x46.72.69 ; "Fri", case-sensitive
-                  / %x53.61.74 ; "Sat", case-sensitive
-                  / %x53.75.6E ; "Sun", case-sensitive
-      date1        = day SP month SP year
-                      ; e.g., 02 Jun 1982
-    
-      day          = 2DIGIT
-      month        = %x4A.61.6E ; "Jan", case-sensitive
-                  / %x46.65.62 ; "Feb", case-sensitive
-                  / %x4D.61.72 ; "Mar", case-sensitive
-                  / %x41.70.72 ; "Apr", case-sensitive
-                  / %x4D.61.79 ; "May", case-sensitive
-                  / %x4A.75.6E ; "Jun", case-sensitive
-                  / %x4A.75.6C ; "Jul", case-sensitive
-                  / %x41.75.67 ; "Aug", case-sensitive
-                  / %x53.65.70 ; "Sep", case-sensitive
-                  / %x4F.63.74 ; "Oct", case-sensitive
-                  / %x4E.6F.76 ; "Nov", case-sensitive
-                  / %x44.65.63 ; "Dec", case-sensitive
-      year         = 4DIGIT
-    
-      GMT          = %x47.4D.54 ; "GMT", case-sensitive
-    
-      time-of-day  = hour ":" minute ":" second
-                  ; 00:00:00 - 23:59:60 (leap second)
-    
-      hour         = 2DIGIT
-      minute       = 2DIGIT
-      second       = 2DIGIT
-     */
+   * @see https://www.rfc-editor.org/rfc/rfc7231#section-7.1.1.1
+   * @param {number|Date} date
+    IMF-fixdate  = day-name "," SP date1 SP time-of-day SP GMT
+    ; fixed length/zone/capitalization subset of the format
+    ; see Section 3.3 of [RFC5322]
+  
+    day-name     = %x4D.6F.6E ; "Mon", case-sensitive
+                / %x54.75.65 ; "Tue", case-sensitive
+                / %x57.65.64 ; "Wed", case-sensitive
+                / %x54.68.75 ; "Thu", case-sensitive
+                / %x46.72.69 ; "Fri", case-sensitive
+                / %x53.61.74 ; "Sat", case-sensitive
+                / %x53.75.6E ; "Sun", case-sensitive
+    date1        = day SP month SP year
+                    ; e.g., 02 Jun 1982
+  
+    day          = 2DIGIT
+    month        = %x4A.61.6E ; "Jan", case-sensitive
+                / %x46.65.62 ; "Feb", case-sensitive
+                / %x4D.61.72 ; "Mar", case-sensitive
+                / %x41.70.72 ; "Apr", case-sensitive
+                / %x4D.61.79 ; "May", case-sensitive
+                / %x4A.75.6E ; "Jun", case-sensitive
+                / %x4A.75.6C ; "Jul", case-sensitive
+                / %x41.75.67 ; "Aug", case-sensitive
+                / %x53.65.70 ; "Sep", case-sensitive
+                / %x4F.63.74 ; "Oct", case-sensitive
+                / %x4E.6F.76 ; "Nov", case-sensitive
+                / %x44.65.63 ; "Dec", case-sensitive
+    year         = 4DIGIT
+  
+    GMT          = %x47.4D.54 ; "GMT", case-sensitive
+  
+    time-of-day  = hour ":" minute ":" second
+                ; 00:00:00 - 23:59:60 (leap second)
+  
+    hour         = 2DIGIT
+    minute       = 2DIGIT
+    second       = 2DIGIT
+   */
       function toIMFDate(date) {
         if (typeof date === "number") {
           date = new Date(date);
@@ -23672,12 +23672,12 @@
       }
 
       /**
-     max-age-av        = "Max-Age=" non-zero-digit *DIGIT
-                           ; In practice, both expires-av and max-age-av
-                           ; are limited to dates representable by the
-                           ; user agent.
-     * @param {number} maxAge
-     */
+   max-age-av        = "Max-Age=" non-zero-digit *DIGIT
+                         ; In practice, both expires-av and max-age-av
+                         ; are limited to dates representable by the
+                         ; user agent.
+   * @param {number} maxAge
+   */
       function validateCookieMaxAge(maxAge) {
         if (maxAge < 0) {
           throw new Error("Invalid cookie max-age");
@@ -35404,22 +35404,22 @@
         onData(chunk) {
           if (this.location) {
             /*
-            https://tools.ietf.org/html/rfc7231#section-6.4
-    
-            TLDR: undici always ignores 3xx response bodies.
-    
-            Redirection is used to serve the requested resource from another URL, so it is assumes that
-            no body is generated (and thus can be ignored). Even though generating a body is not prohibited.
-    
-            For status 301, 302, 303, 307 and 308 (the latter from RFC 7238), the specs mention that the body usually
-            (which means it's optional and not mandated) contain just an hyperlink to the value of
-            the Location response header, so the body can be ignored safely.
-    
-            For status 300, which is "Multiple Choices", the spec mentions both generating a Location
-            response header AND a response body with the other possible location to follow.
-            Since the spec explicitily chooses not to specify a format for such body and leave it to
-            servers and browsers implementors, we ignore the body as there is no specified way to eventually parse it.
-          */
+          https://tools.ietf.org/html/rfc7231#section-6.4
+  
+          TLDR: undici always ignores 3xx response bodies.
+  
+          Redirection is used to serve the requested resource from another URL, so it is assumes that
+          no body is generated (and thus can be ignored). Even though generating a body is not prohibited.
+  
+          For status 301, 302, 303, 307 and 308 (the latter from RFC 7238), the specs mention that the body usually
+          (which means it's optional and not mandated) contain just an hyperlink to the value of
+          the Location response header, so the body can be ignored safely.
+  
+          For status 300, which is "Multiple Choices", the spec mentions both generating a Location
+          response header AND a response body with the other possible location to follow.
+          Since the spec explicitily chooses not to specify a format for such body and leave it to
+          servers and browsers implementors, we ignore the body as there is no specified way to eventually parse it.
+        */
           } else {
             return this.handler.onData(chunk);
           }
@@ -35428,13 +35428,13 @@
         onComplete(trailers) {
           if (this.location) {
             /*
-            https://tools.ietf.org/html/rfc7231#section-6.4
-    
-            TLDR: undici always ignores 3xx response trailers as they are not expected in case of redirections
-            and neither are useful if present.
-    
-            See comment on onData method above for more detailed informations.
-          */
+          https://tools.ietf.org/html/rfc7231#section-6.4
+  
+          TLDR: undici always ignores 3xx response trailers as they are not expected in case of redirections
+          and neither are useful if present.
+  
+          See comment on onData method above for more detailed informations.
+        */
 
             this.location = null;
             this.abort = null;
@@ -36174,10 +36174,10 @@
 
           throw new UndiciError(
             `
-    ${pluralizer.count} ${pluralizer.noun} ${pluralizer.is} pending:
-    
-    ${pendingInterceptorsFormatter.format(pending)}
-    `.trim()
+  ${pluralizer.count} ${pluralizer.noun} ${pluralizer.is} pending:
+  
+  ${pendingInterceptorsFormatter.format(pending)}
+  `.trim()
           );
         }
       }
@@ -43107,9 +43107,9 @@
           });
         };
       Object.defineProperty(exports, "__esModule", { value: true });
-      const action_1 = __nccwpck_require__(1231);
       const core = __nccwpck_require__(2186);
       const github = __nccwpck_require__(5438);
+      const action_1 = __nccwpck_require__(1231);
       const child_process_1 = __nccwpck_require__(2081);
       const fs_1 = __nccwpck_require__(7147);
       const https_proxy_agent_1 = __nccwpck_require__(7219);
@@ -43143,7 +43143,9 @@
           const headResult = (0, child_process_1.spawnSync)(
             "git",
             ["rev-parse", "HEAD"],
-            { encoding: "utf-8" }
+            {
+              encoding: "utf-8",
+            }
           );
           const HEAD_SHA = headResult.stdout;
           if (
@@ -43184,7 +43186,7 @@
               } else {
                 process.stdout.write("\n");
                 process.stdout.write(
-                  `WARNING: Unable to find a successful workflow run on 'origin/${mainBranchName}'\n`
+                  `WARNING: Unable to find a successful workflow run on 'origin/${mainBranchName}, or the latest successful workflow was connected to a commit which no longer exists on that branch (e.g. if that branch was rebased)'\n`
                 );
                 process.stdout.write(
                   `We are therefore defaulting to use HEAD~1 on 'origin/${mainBranchName}'\n`
@@ -43193,6 +43195,7 @@
                 process.stdout.write(
                   `NOTE: You can instead make this a hard error by setting 'error-on-no-successful-workflow' on the action in your workflow.\n`
                 );
+                process.stdout.write("\n");
                 const commitCountOutput = (0, child_process_1.spawnSync)(
                   "git",
                   ["rev-list", "--count", `origin/${mainBranchName}`],
@@ -43208,7 +43211,9 @@
                 const baseRes = (0, child_process_1.spawnSync)(
                   "git",
                   ["rev-parse", LAST_COMMIT_CMD],
-                  { encoding: "utf-8" }
+                  {
+                    encoding: "utf-8",
+                  }
                 );
                 BASE_SHA = baseRes.stdout;
                 core.setOutput("noPreviousBuild", "true");
@@ -43226,12 +43231,12 @@
         }))();
       function reportFailure(branchName) {
         core.setFailed(`
-        Unable to find a successful workflow run on 'origin/${branchName}'
-        NOTE: You have set 'error-on-no-successful-workflow' on the action so this is a hard error.
-    
-        Is it possible that you have no runs currently on 'origin/${branchName}'?
-        - If yes, then you should run the workflow without this flag first.
-        - If no, then you might have changed your git history and those commits no longer exist.`);
+      Unable to find a successful workflow run on 'origin/${branchName}'
+      NOTE: You have set 'error-on-no-successful-workflow' on the action so this is a hard error.
+  
+      Is it possible that you have no runs currently on 'origin/${branchName}'?
+      - If yes, then you should run the workflow without this flag first.
+      - If no, then you might have changed your git history and those commits no longer exist.`);
       }
       function proxyPlugin(octokit) {
         octokit.hook.before("request", (options) => {
@@ -43245,12 +43250,6 @@
       }
       /**
        * Find last successful workflow run on the repo
-       * @param {string?} workflow_id
-       * @param {number} run_id
-       * @param {string} owner
-       * @param {string} repo
-       * @param {string} branch
-       * @returns
        */
       function findSuccessfulCommit(
         workflow_id,
@@ -43333,13 +43332,11 @@
       }
       /**
        * Get first existing commit
-       * @param {string[]} commit_shas
-       * @returns {string?}
        */
-      function findExistingCommit(octokit, branch, shas) {
+      function findExistingCommit(octokit, branchName, shas) {
         return __awaiter(this, void 0, void 0, function* () {
           for (const commitSha of shas) {
-            if (yield commitExists(octokit, branch, commitSha)) {
+            if (yield commitExists(octokit, branchName, commitSha)) {
               return commitSha;
             }
           }
@@ -43348,14 +43345,14 @@
       }
       /**
        * Check if given commit is valid
-       * @param {string} commitSha
-       * @returns {boolean}
        */
       function commitExists(octokit, branchName, commitSha) {
         return __awaiter(this, void 0, void 0, function* () {
           try {
             (0,
-            child_process_1.spawnSync)("git", ["cat-file", "-e", commitSha], { stdio: ["pipe", "pipe", null] });
+            child_process_1.spawnSync)("git", ["cat-file", "-e", commitSha], {
+              stdio: ["pipe", "pipe", null],
+            });
             // Check the commit exists in general
             yield octokit.request(
               "GET /repos/{owner}/{repo}/commits/{commit_sha}",
@@ -43366,21 +43363,22 @@
               }
             );
             // Check the commit exists on the expected main branch (it will not in the case of a rebased main branch)
-            const commits = yield octokit.request('GET /repos/{owner}/{repo}/commits', {
-              owner,
-              repo,
-              sha: branchName
-            });
-            return commits.data.some(commit => commit.sha === commitSha);
+            const commits = yield octokit.request(
+              "GET /repos/{owner}/{repo}/commits",
+              {
+                owner,
+                repo,
+                sha: branchName,
+              }
+            );
+            return commits.data.some((commit) => commit.sha === commitSha);
           } catch (_a) {
-            console.log("error", { _a });
             return false;
           }
         });
       }
       /**
        * Strips LF line endings from given string
-       * @param {string} string
        */
       function stripNewLineEndings(string) {
         return string.replace("\n", "");
