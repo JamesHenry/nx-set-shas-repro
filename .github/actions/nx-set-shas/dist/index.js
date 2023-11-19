@@ -43356,7 +43356,7 @@
           try {
             (0,
             child_process_1.spawnSync)("git", ["cat-file", "-e", commitSha], { stdio: ["pipe", "pipe", null] });
-            yield octokit.request(
+            const res = yield octokit.request(
               "GET /repos/{owner}/{repo}/commits/{commit_sha}",
               {
                 owner,
@@ -43364,6 +43364,7 @@
                 commit_sha: commitSha,
               }
             );
+            console.log({ res });
             return true;
           } catch (_a) {
             console.log("error", { _a });
