@@ -43293,7 +43293,7 @@
             .then(({ data: { workflow_runs } }) =>
               workflow_runs.map((run) => run.head_sha)
             );
-          return yield findExistingCommit(octokit, shas);
+          return yield findExistingCommit(octokit, branch, shas);
         });
       }
       function findMergeBaseRef() {
@@ -43336,10 +43336,10 @@
        * @param {string[]} commit_shas
        * @returns {string?}
        */
-      function findExistingCommit(octokit, shas) {
+      function findExistingCommit(octokit, branch, shas) {
         return __awaiter(this, void 0, void 0, function* () {
           for (const commitSha of shas) {
-            if (yield commitExists(octokit, commitSha)) {
+            if (yield commitExists(octokit, branch, commitSha)) {
               return commitSha;
             }
           }
@@ -43351,12 +43351,13 @@
        * @param {string} commitSha
        * @returns {boolean}
        */
-      function commitExists(octokit, commitSha) {
+      function commitExists(octokit, branchName, commitSha) {
         return __awaiter(this, void 0, void 0, function* () {
           try {
             (0,
             child_process_1.spawnSync)("git", ["cat-file", "-e", commitSha], { stdio: ["pipe", "pipe", null] });
-            const res = yield octokit.request(
+            // Check the commit exists in general
+            yield octokit.request(
               "GET /repos/{owner}/{repo}/commits/{commit_sha}",
               {
                 owner,
@@ -43364,8 +43365,13 @@
                 commit_sha: commitSha,
               }
             );
-            console.log({ res });
-            return true;
+            // Check the commit exists on the expected main branch (it will not in the case of a rebased main branch)
+            const commits = yield octokit.request('GET /repos/{owner}/{repo}/commits', {
+              owner,
+              repo,
+              sha: branchName
+            });
+            return commits.data.some(commit => commit.sha === commitSha);
           } catch (_a) {
             console.log("error", { _a });
             return false;
