@@ -16,3 +16,5 @@ jobs:
       - run: |
           echo "BASE: ${{ env.NX_BASE }}"
           echo "HEAD: ${{ env.NX_HEAD }}"
+          echo something
+          exit 1
